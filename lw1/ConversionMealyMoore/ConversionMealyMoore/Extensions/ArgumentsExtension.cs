@@ -27,8 +27,8 @@ namespace ConversionMealyMoore.Extensions
 
             return arguments[0] switch
             {
-                MealyToMooreConversionName => ConversionType.MealyToMoore,
-                MooreToMealyConversionName => ConversionType.MooreToMealy,
+                MealyToMooreConversionName => ConversionType.ToMoore,
+                MooreToMealyConversionName => ConversionType.ToMealy,
                 _ => throw new ArgumentOutOfRangeException($"Invalid conversion type: {arguments[0]}"),
             };
         }

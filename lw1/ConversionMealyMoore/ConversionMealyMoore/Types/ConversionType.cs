@@ -2,7 +2,7 @@
 {
     public enum ConversionType
     {
-        MealyToMoore,
-        MooreToMealy
+        ToMoore,
+        ToMealy
     }
 }

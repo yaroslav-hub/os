@@ -9,7 +9,7 @@ namespace ConversionMealyMoore.Handlers
         private readonly StreamReader _input;
         private readonly StreamWriter _output;
 
-        public FileHandler(StreamReader input, StreamWriter output)
+        public FileHandler( StreamReader input, StreamWriter output )
         {
             _input = input;
             _output = output;
@@ -17,7 +17,7 @@ namespace ConversionMealyMoore.Handlers
 
         public string ReadLine()
         {
-            return (!_input.EndOfStream)
+            return ( !_input.EndOfStream )
                 ? _input.ReadLine()
                 : null;
         }
@@ -25,24 +25,29 @@ namespace ConversionMealyMoore.Handlers
         public List<string> ReadAllLines()
         {
             List<string> lines = new();
-            while (!_input.EndOfStream)
+            while ( !_input.EndOfStream )
             {
-                lines.Add(ReadLine());
+                lines.Add( ReadLine() );
             }
 
             return lines
-                .Where(s => !string.IsNullOrEmpty(s))
+                .Where( s => !string.IsNullOrEmpty( s ) )
                 .ToList();
         }
 
-        public void WriteLine(string line)
+        public void WriteLine( string line )
         {
-            if (string.IsNullOrEmpty(line))
+            if ( string.IsNullOrEmpty( line ) )
             {
                 return;
             }
 
-            _output.WriteLine(line);
+            _output.WriteLine( line );
+        }
+
+        public void WriteLines( List<string> lines )
+        {
+            lines.ForEach( x => WriteLine( x ) );
         }
     }
 }
