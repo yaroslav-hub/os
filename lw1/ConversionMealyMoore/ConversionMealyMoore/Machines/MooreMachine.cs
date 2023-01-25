@@ -91,7 +91,7 @@ namespace ConversionMealyMoore.Machines
                 action.Value.ForEach( x => transitions.Add(
                     x
                     + "/"
-                    + _outputSignals[ action.Value.IndexOf( x ) ] ) );
+                    + _outputSignals[ _states.IndexOf( x ) ] ) );
 
                 newActions.Add( action.Key, transitions );
             }
