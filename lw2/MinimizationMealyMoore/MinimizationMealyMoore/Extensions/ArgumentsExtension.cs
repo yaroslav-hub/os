@@ -7,8 +7,8 @@ namespace ConversionMealyMoore.Extensions
 {
     public static class ArgumentsExtension
     {
-        private const string MealyToMooreConversionName = "mealy-to-moore";
-        private const string MooreToMealyConversionName = "moore-to-mealy";
+        private const string MealyMinimizationName = "mealy";
+        private const string MooreMinimizationName = "moore";
 
         public static List<string> GetFilesNames(this string[] arguments)
         {
@@ -21,15 +21,15 @@ namespace ConversionMealyMoore.Extensions
             };
         }
 
-        public static ConversionType GetConversionType(this string[] arguments)
+        public static MinimizationType GetConversionType(this string[] arguments)
         {
             CheckArguments(arguments);
 
             return arguments[0] switch
             {
-                MealyToMooreConversionName => ConversionType.ToMoore,
-                MooreToMealyConversionName => ConversionType.ToMealy,
-                _ => throw new ArgumentOutOfRangeException($"Invalid conversion type: {arguments[0]}"),
+                MealyMinimizationName => MinimizationType.Mealy,
+                MooreMinimizationName => MinimizationType.Moore,
+                _ => throw new ArgumentOutOfRangeException($"Invalid minimization type: {arguments[0]}"),
             };
         }
 
@@ -39,7 +39,7 @@ namespace ConversionMealyMoore.Extensions
             {
                 throw new ArgumentException("Invalid count of arguments");
             }
-            if (arguments.Any(x => string.IsNullOrEmpty(x)))
+            if (arguments.Any(x => string.IsNullOrWhiteSpace(x)))
             {
                 throw new ArgumentException("Arguments can't be null or empty");
             }

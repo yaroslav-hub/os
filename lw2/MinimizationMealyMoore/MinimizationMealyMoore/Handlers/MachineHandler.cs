@@ -1,33 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using ConversionMealyMoore.Machines;
+﻿using ConversionMealyMoore.Machines;
 using ConversionMealyMoore.Types;
+using System;
+using System.Collections.Generic;
 
 namespace ConversionMealyMoore.Handlers
 {
     public sealed class MachineHandler
     {
-        private readonly ConversionType _conversionType;
+        private readonly MinimizationType _minimizationType;
         private readonly IMachine _machine;
 
-        public MachineHandler( List<string> parameters, ConversionType conversionType )
+        public MachineHandler(List<string> parameters, MinimizationType conversionType)
         {
-            _conversionType = conversionType;
-            _machine = InitMachine( parameters );
+            _minimizationType = conversionType;
+            _machine = InitMachine(parameters);
         }
 
-        public IMachine GetConverted()
+        public IMachine GetMinimized()
         {
-            return _machine.Convert( _conversionType );
+            _machine.Minimize();
+
+            return _machine;
         }
 
-        private IMachine InitMachine( List<string> parameters )
+        private IMachine InitMachine(List<string> parameters)
         {
-            return _conversionType switch
+            return _minimizationType switch
             {
-                ConversionType.ToMoore => new MealyMachine( parameters ),
-                ConversionType.ToMealy => new MooreMachine( parameters ),
-                _ => throw new ArgumentOutOfRangeException( nameof( _conversionType ) ),
+                MinimizationType.Moore => new MooreMachine(parameters),
+                MinimizationType.Mealy => new MealyMachine(parameters),
+                _ => throw new ArgumentOutOfRangeException(nameof(_minimizationType)),
             };
         }
     }
