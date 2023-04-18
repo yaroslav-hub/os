@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DeterminizationMoore": {
+      "commandName": "Project",
+      "commandLineArgs": "input.csv output.csv"
+    }
+  }
+}
